@@ -159,7 +159,7 @@ class KeyboardAccessoryView extends Component {
     const isChildRenderProp = typeof children === "function";
 
     return (
-      <View style={{ [heightProperty]: (isKeyboardVisible || alwaysVisible ? visibleHeight  : 0) }}>
+      <View style={{ [heightProperty]: (isKeyboardVisible || alwaysVisible ? visibleHeight  : 0) }} pointerEvents='box-none'>
         <View style={[
           styles.accessory,
           !hideBorder && styles.accessoryBorder,
@@ -169,8 +169,8 @@ class KeyboardAccessoryView extends Component {
             bottom: keyboardHeight - bumperHeight - (applySafeArea ? 20 : 0),
             [heightProperty]: accessoryHeight + bumperHeight + (applySafeArea ? (!isKeyboardVisible ? 20 : -10) : 0),
           }
-        ]}>
-          <View onLayout={this.handleChildrenLayout}>
+        ]} pointerEvents='box-none'>
+          <View onLayout={this.handleChildrenLayout} pointerEvents='box-none'>
             { isChildRenderProp
                ? children({ isKeyboardVisible })
                : children }
